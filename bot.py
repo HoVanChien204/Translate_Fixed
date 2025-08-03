@@ -53,9 +53,10 @@ async def handle_admin_reply(update: Update, context: ContextTypes.DEFAULT_TYPE)
     if user_id in AUTHORIZED_USERS:
         text = update.message.text
         translated = await translate_with_gpt(text, to_lang="en")
-        await context.bot.send_message(chat_id=update.effective_chat.id, text=f"{text}
-
-🇬🇧 {translated}")
+        await context.bot.send_message(
+            chat_id=update.effective_chat.id,
+            text=f"{text}\n\n🇬🇧 {translated}"
+        )
         await update.message.delete()
 
 async def handle_translate_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
